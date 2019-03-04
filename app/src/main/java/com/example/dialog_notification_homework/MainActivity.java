@@ -1,6 +1,5 @@
 package com.example.dialog_notification_homework;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -14,10 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 
 import static android.app.Notification.*;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showDialog(){
+    private void showDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         alertDialog.setTitle("SEND");
         alertDialog.setMessage("Send the notification");
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showRemove(){
+    private void showRemove() {
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         alertDialog.setTitle("REMOVE");
         alertDialog.setMessage("Remove your message");
@@ -118,9 +115,7 @@ public class MainActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
 
-        // check for OREO+ version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // creating a notification channel
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications",
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationChannel.setDescription("Channel description");
@@ -128,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        // create notification
-        // Builder pattern (https://en.wikipedia.org/wiki/Builder_pattern)
+
         NotificationCompat.Builder notificationBuilder
                 = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setAutoCancel(true)
@@ -139,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTicker("Hearty365")
                 .setContentTitle(sTitle)
                 .setContentText(sText);
-        // push notification
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
 
     }
